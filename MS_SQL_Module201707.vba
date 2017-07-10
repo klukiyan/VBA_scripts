@@ -54,7 +54,7 @@ For Each r In InputRNG.Cells
     Else
     SIngleSTR = Replace(SIngleSTR, "'", "''", , , vbTextCompare)  'important part for apostrophes
     SIngleSTR = Replace(SIngleSTR, "CHR(34)", "", , , vbTextCompare) 'removing the quotation marks in a cell
-    SInssssssssssssssssssssssssssssssleSTR = "'" & SIngleSTR & "'"
+    SIngleSTR = "'" & SIngleSTR & "'"
     End If
     MySTR = MySTR & SIngleSTR & ", "
 Next r
