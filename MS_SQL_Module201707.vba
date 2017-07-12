@@ -314,3 +314,36 @@ For i = 2 To maxrow
 Next i
 'Debug.Print "Data imported"
 End Sub
+                                                            
+Sub Create_SQL_Table_From_Range (TheRange as Range)
+	Dim r as Range 
+	Dim i, z, m as Long
+
+	Dim rRows, rColumns as Long
+		'getting rows and Columns
+	rRows = TheRange.Rows.Count
+	rColumns = TheRange.Columns.Count
+
+	Dim TheS, OptionalString, TableName as string
+	TableName = InputBox("Enter new table name")
+	OptionalString = "ID int IDENTITY(1,1) PRIMARY KEY, "
+	TheS = "Create Table " & TableName & " ("
+		For i = 1 to rColumns
+			TheS = TheS & "[" & TheRange.Cells(i,1) & "] "
+				If isdate(TheRange.cells(i, 2)) Then 
+					TheS = TheS & "Date"
+				Else 
+					TheS = TheS & "Varchar(255)"
+				End if
+				'comma or paranthesis'
+				If i = rColumns Then
+					TheS = TheS & ")"
+				Else
+					TheS = TheS & ", "
+				End If
+		Next i
+
+	Debug.Print TheS
+	Ms_SQLData2 TheS
+
+End Sub
